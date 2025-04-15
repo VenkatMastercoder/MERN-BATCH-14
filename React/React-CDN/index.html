@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>React Day-1</title>
+</head>
+
+<body>
+  <!-- <p>Hello World React</p> -->
+
+  <!-- TO INSTALL REACT -->
+
+  <!-- react.development.js -->
+  <!-- <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script> -->
+
+  <!-- react-dom.development.js -->
+  <!-- <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script> -->
+
+  <!-- react.development.js -->
+  <script crossorigin src="./react-dom.development.js"></script>
+  <script crossorigin src="./react.development.js"></script>
+  
+  <!-- 
+    1. HTTP API CALL -> react.development.js , react-dom.development.js
+    2. 18 -> 20 : Change new CDN Link [ No Version Control ]
+    3. No Buliding Tools -> CDN Approach will not Suitable for Production 
+  -->
+
+  <!-- Method & Property -->
+
+  <div id="root">
+    <p id="para">Hello World</p>
+    <!-- <button id="btn">Change Text</button> -->
+  </div>
+
+  <script>
+
+    // <p>Hello React</p>
+    const paraElement = React.createElement("p", null, "Hello React");
+
+    // const paraElement = document.getElementById("para");
+    // const buttonElement = document.getElementById("btn");
+
+    // buttonElement.addEventListener("click",()=>{
+    //   paraElement.textContent = "Hi...React"
+    // })  
+
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(paraElement);
+
+  </script>
+
+</body>
+
+</html>
