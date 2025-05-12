@@ -1,0 +1,119 @@
+*{
+  border: 1px solid red;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #3498db;
+  --secondary-color: #2ecc71;
+}
+
+.paragraph {
+  background-color: var(--primary-color);
+}
+
+.heading {
+  color: var(--secondary-color);
+}
+
+.box-1 {
+  color: #2ecc71;
+  background-color: brown;
+  width: 200px;
+  height: 200px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.box-2 {
+  color: #1a2bc9;
+  background-color: rgb(42, 165, 89);
+  width: 200px;
+  height: 200px;
+  box-sizing: border-box;
+}
+
+
+.box-2:hover {
+  background-color: red;
+}
+
+#para {
+  color: #000;
+  background-color: #2ecc71;
+}
+
+p {
+  background-color: aqua;
+}
+
+.para {
+  background-color: #2ecc71;
+  box-sizing: content-box;
+}
+
+.rotate-in-2-cw {
+	-webkit-animation: rotate-in-2-cw 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: rotate-in-2-cw 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+ @-webkit-keyframes rotate-in-2-cw {
+  0% {
+    -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+    opacity: 1;
+  }
+}
+@keyframes rotate-in-2-cw {
+  0% {
+    -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+    opacity: 1;
+  }
+}
+
+.rotate-center {
+	-webkit-animation: rotate-center 0.6s ease-in-out both;
+	        animation: rotate-center 0.6s ease-in-out both;
+}
+
+ @-webkit-keyframes rotate-center {
+  0% {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+@keyframes rotate-center {
+  0% {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+.car {
+  color: green;
+}
+
+.car {
+  color: red;
+}

@@ -1,0 +1,54 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Gender {
+  MALE
+  FEMALE
+}
+
+enum ProofType {
+  AADHARCARD
+  PANCARD
+}
+
+enum PaymentType {
+  CASH
+  NEFT
+  BANKTRANFER
+}
+
+model Student {
+  roll_no     String @unique
+  name        String
+  gender      Gender
+  dob         String
+  blood_group String
+
+  studentProof StudentProof?
+  studentFees  StudentFees[]
+}
+
+model StudentProof {
+  student_proof_id String    @unique
+  proof_type       ProofType
+  proof_link       String
+
+  roll_no String  @unique
+  student Student @relation(fields: [roll_no], references: [roll_no])
+}
+
+model StudentFees {
+  student_fees_id String      @unique
+  payment_id      String
+  payment_mode    PaymentType
+  payment_amount  String
+
+  roll_no String
+  student Student @relation(fields: [roll_no], references: [roll_no])
+}

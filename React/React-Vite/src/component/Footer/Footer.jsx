@@ -1,6 +1,10 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import UserStore from "../../store/UserStore";
 
 const Footer = () => {
+  const user_data = useContext(UserStore);
+
   return (
     <>
       <footer className="p-4 bg-white md:p-8 lg:p-10 dark:bg-gray-800">
@@ -146,7 +150,7 @@ const Footer = () => {
           </a>
           <p className="my-6 text-gray-500 dark:text-gray-400">
             Open-source library of over 400+ web components and interactive
-            elements built for better web.
+            elements built for better web {user_data.name}.
           </p>
           <ul className="flex flex-wrap justify-center items-center mb-6 text-gray-900 dark:text-white">
             <li>
@@ -158,7 +162,7 @@ const Footer = () => {
               <Link to="/products" className="mr-4 hover:underline md:mr-6 ">
                 Products
               </Link>
-            </li>            
+            </li>
           </ul>
           <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
             © 2021-2022{" "}

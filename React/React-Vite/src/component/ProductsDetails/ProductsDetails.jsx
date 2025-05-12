@@ -1,14 +1,36 @@
 import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import useFetchProductsDetails from "../../hooks/useFetchProductsDetails";
+import useCart from "../../hooks/useCart";
+
+// onClick={()=>setData("dvds")} - 1
+// onClick={functionName} - 2
 
 const ProductsDetails = () => {
   const { id } = useParams();
   const { product, loading } = useFetchProductsDetails(id);
-
   const [activeImage, setActiveImage] = useState(0);
+  const [quantity, setQuantity] = useState(1);
+  const [isInCart, setIsInCart] = useState(false);
+  const [cartItemId, setCartItemId] = useState(null);
+
+  const { cart, addItemsCart, clearCartItem, updateQuantity } = useCart();
+
+  // Check if product is in cart
+  useEffect(() => {
+    const cartItem = cart.find(item => item.id === Number(id));
+    if (cartItem) {
+      setIsInCart(true);
+      setCartItemId(cartItem.id);
+      setQuantity(cartItem.quantity || 1);
+    } else {
+      setIsInCart(false);
+      setCartItemId(null);
+      setQuantity(1);
+    }
+  }, [cart, id]);
 
   const formatDate = (dateString) => {
     return new Date(dateString).toLocaleDateString("en-US", {
@@ -29,6 +51,22 @@ const ProductsDetails = () => {
   if (!product) {
     return <div className="py-8 text-center">Product not found</div>;
   }
+
+  const handleQuantityChange = (newQuantity) => {
+    if (newQuantity < 1) return;
+    setQuantity(newQuantity);
+    if (isInCart) {
+      updateQuantity(cartItemId, newQuantity);
+    }
+  };
+
+  const handleAddToCart = () => {
+    addItemsCart({ ...product, quantity });
+  };
+
+  const handleRemoveFromCart = () => {
+    clearCartItem(cartItemId);
+  };
 
   return (
     <div className="bg-white dark:bg-gray-900">
@@ -187,13 +225,37 @@ const ProductsDetails = () => {
 
             {/* Add to Cart Section */}
             <div className="mt-8">
+              <div className="flex items-center mb-4 space-x-4">
+                <div className="flex items-center space-x-2">
+                  <button 
+                    onClick={() => handleQuantityChange(quantity - 1)}
+                    className="px-3 py-1 text-gray-600 border rounded-md hover:bg-gray-100 dark:text-white dark:hover:bg-gray-800"
+                  >
+                    -
+                  </button>
+                  <span className="w-12 text-center">{quantity}</span>
+                  <button 
+                    onClick={() => handleQuantityChange(quantity + 1)}
+                    className="px-3 py-1 text-gray-600 border rounded-md hover:bg-gray-100 dark:text-white dark:hover:bg-gray-800"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
               <div className="flex space-x-4">
-                <button className="flex-1 px-6 py-3 text-white rounded-md bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2">
-                  Add to Cart
-                </button>
-                <button className="flex-1 px-6 py-3 text-gray-700 border border-gray-300 rounded-md dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2">
-                  Buy Now
-                </button>
+                {!isInCart ? (
+                  <button
+                    className="flex-1 px-6 py-3 text-white rounded-md bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+                    onClick={handleAddToCart}>
+                    Add to Cart
+                  </button>
+                ) : (
+                  <button
+                    className="flex-1 px-6 py-3 text-white bg-red-600 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+                    onClick={handleRemoveFromCart}>
+                    Remove from Cart
+                  </button>
+                )}
               </div>
             </div>
 

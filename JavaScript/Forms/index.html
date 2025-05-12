@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forms</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!--FireBase SDK-->
+  <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+</head>
+
+<body>
+
+  <!--
+    step 1: e.preventDefault() - Stop Reloading 
+
+    step 2: Get all the data ==> input.value
+
+    step 3: To Valid the data from Step 2 
+          - Basic Vaildation
+             - type=""
+          - Regex Vaildation 
+
+    step 4: Valid the data
+  -->
+
+  <form id="form" class="py-5 px-5 w-[40%] space-y-4">
+
+    <div class="flex flex-col justify-start items-start">
+      <!--Name-->
+      <label for="name">Name</label>
+      <input id="name" class="border border-green-500" type="text" />
+    </div>
+
+    <div class="flex flex-col justify-start items-start">
+      <!--Email-->
+      <label for="email">Email</label>
+      <input id="email" class="border border-green-500" />
+      <p id="mailError" class="text-red-400"></p>
+    </div>
+
+    <div class="flex flex-col justify-start items-start">
+      <!--Message-->
+      <label for="message">Message</label>
+      <textarea id="message" class="border border-green-500"></textarea>
+    </div>
+
+    <div class="w-[100%]">
+      <button id="btn" class="bg-black text-white px-8 py-2 rounded-lg">Submit</button>
+    </div>
+
+  </form>
+
+  <script>
+    const nameElement = document.getElementById("name");
+    const emailElement = document.getElementById("email");
+    const messageElement = document.getElementById("message");
+
+    const formElement = document.getElementById("form");
+
+    const mailElement = document.getElementById("mailError");
+
+    function vaildateData(name, email, message) {
+      console.log("vaildateData:", name, email, message);
+      let isVaild = true
+
+      var regex = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+
+      if (!regex.test(email)) {
+        mailElement.textContent = "Please Enter a Vaild Email Address"
+        isVaild = false
+      }
+
+      return isVaild
+    }
+
+    function SaveDataToDB(name, email, message) {
+      const firebaseConfig = {
+        apiKey: "AIzaSyCWJ6WsaU8FBwQ8xzav0TdUyv3ZiP2foUY",
+        authDomain: "batch-14-mern-forms.firebaseapp.com",
+        databaseURL: "https://batch-14-mern-forms-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "batch-14-mern-forms",
+        storageBucket: "batch-14-mern-forms.firebasestorage.app",
+        messagingSenderId: "889301765748",
+        appId: "1:889301765748:web:0585e1a1c4a1b4452e8b21"
+      };
+
+      if (!firebase.apps.length) {
+        firebase.initializeApp(firebaseConfig); // DB Cont
+      }
+
+      const db = firebase.database().ref("LoginForm");
+
+      db.push({
+        name: name,
+        email: email,
+        message: message
+      })
+
+      formElement.reset()
+      mailElement.textContent = ""
+    }
+
+    formElement.addEventListener("submit", (e) => {
+      // Change forms Default beha
+      e.preventDefault()
+
+      // Data from form
+      console.log(nameElement.value)
+      console.log(emailElement.value)
+      console.log(messageElement.value)
+
+      // Vaildation function
+      const res = vaildateData(nameElement.value, emailElement.value, messageElement.value)
+
+      console.log(res)
+
+      // Save the data to DB
+      if (res) {
+        SaveDataToDB(nameElement.value, emailElement.value, messageElement.value)
+      }
+    })
+
+  </script>
+</body>
+
+</html>

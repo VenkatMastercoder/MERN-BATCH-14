@@ -4,9 +4,9 @@ import ComponentB from "../ComponentB/ComponentB";
 const ComponentA = () => {
   const [user, setUser] = useState("Ram");
 
-  // const handleChange = (data) => {
-  //   setUser(data)
-  // }
+  const handleChange = (data) => {
+    setUser(data)
+  }
 
   return (
     <div>
@@ -19,7 +19,7 @@ const ComponentA = () => {
         </button>
       </div>
 
-      {/* <ComponentB data={user} handleChange={handleChange} /> */}
+      <ComponentB data={user} handleChange={handleChange} />
     </div>
   );
 };

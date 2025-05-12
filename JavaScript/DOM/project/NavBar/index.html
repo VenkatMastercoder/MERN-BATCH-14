@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NavBar</title>
+
+  <!--Tailwind CSS File-->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+  <div class="2xl:container mx-auto bg-green-500 h-[10vh]">
+    <div class="w-[90%] mx-auto grid grid-cols-1 md:grid-cols-2 h-[10vh] px-2">
+      <div class="flex flex-row justify-between items-center gap-4 my-3">
+        <p>Logo</p>
+        <div class="md:hidden">
+          <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" width="1em" height="1em"
+            id="menu" class="hidden"
+          >
+            <path fill="currentColor" d="M3 18h18v-2H3zm0-5h18v-2H3zm0-7v2h18V6z"></path>
+          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" width="1em" height="1em" id="cross">
+            <g fill="currentColor" fillrule="evenodd" cliprule="evenodd">
+              <path d="M5.47 5.47a.75.75 0 0 1 1.06 0l12 12a.75.75 0 1 1-1.06 1.06l-12-12a.75.75 0 0 1 0-1.06"></path>
+              <path d="M18.53 5.47a.75.75 0 0 1 0 1.06l-12 12a.75.75 0 0 1-1.06-1.06l12-12a.75.75 0 0 1 1.06 0"></path>
+            </g>
+          </svg>
+        </div>
+      </div>
+      <div
+        class="flex flex-col justify-center items-center md:flex-row md:justify-end md:items-center gap-4 mt-[10vh] md:mt-0 z-50" id="content">
+        <p id="home">Home</p>
+        <p>About</p>
+        <p>Contact</p>
+        <p>Blog</p>
+        <p>Product</p>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+    const menuElement = document.getElementById("menu");
+    const crossElement = document.getElementById("cross");
+    const contentElement = document.getElementById("content");
+    const homeElement = document.getElementById("home")
+
+    menuElement.addEventListener("click",()=>{
+      menuElement.classList.toggle("hidden")
+      crossElement.classList.toggle("hidden")
+      contentElement.classList.toggle("hidden")
+    })
+
+    crossElement.addEventListener("click",()=>{
+      menuElement.classList.toggle("hidden")
+      crossElement.classList.toggle("hidden")
+      contentElement.classList.toggle("hidden")
+    })
+
+    homeElement.addEventListener("click",()=>{
+      menuElement.classList.toggle("hidden")
+      crossElement.classList.toggle("hidden")
+      contentElement.classList.toggle("hidden")
+    })
+
+  </script>
+</body>
+
+</html>

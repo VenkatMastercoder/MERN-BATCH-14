@@ -4,7 +4,6 @@ import Header from "./component/Header/Header";
 import HeroSection from "./component/HeroSection/HeroSection";
 import Footer from "./component/Footer/Footer";
 import ProductLayout from "./component/ProductLayout/ProductLayout";
-// import Comment from "./component/Comment/Comment";
 import Counter from "./component/Counter/Counter";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import Error from "./component/Error/Error";
@@ -12,6 +11,10 @@ import ProductsDetails from "./component/ProductsDetails/ProductsDetails";
 import ImageComponent from "./component/ImageComponent/ImageComponent";
 import { lazy, Suspense } from "react";
 import ComponentA from "./component/PropDrilling/ComponentA/ComponentA";
+import Cart from "./component/Cart/Cart";
+import UserStore from "./store/UserStore";
+import CartProvider from "./store/CartStore";
+import Contact from "./component/Contact/Contact";
 
 const Comment = lazy(() => import("./component/Comment/Comment"));
 
@@ -20,9 +23,13 @@ const Comment = lazy(() => import("./component/Comment/Comment"));
 const AppLayout = () => {
   return (
     <>
-      <Header />
-      <Outlet />
-      <Footer />
+      <CartProvider>
+        <UserStore.Provider value={{ name: "Hello" }}>
+          <Header />
+          <Outlet />
+          <Footer />
+        </UserStore.Provider>
+      </CartProvider>
     </>
   );
 };
@@ -72,6 +79,14 @@ const routes = createBrowserRouter([
       {
         path: "/componentA",
         element: <ComponentA />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
       },
     ],
     errorElement: <Error />,

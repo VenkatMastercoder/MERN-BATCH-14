@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cat & bulb</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+<body>
+
+  <img src="https://ik.imagekit.io/4z8covdo9/Full%20stack/bulb-go-on-img.png" alt="blub-image" class="h-36" id="bulb">
+  <img src="https://ik.imagekit.io/4z8covdo9/Full%20stack/cat-img.png" alt="cat-image" class="h-36" id="cat">
+
+  <p id="paragraph">Switched Off</p>
+
+  <button id="On">On</button>
+  <button id="Off">Off</button>
+
+  <script>
+    const bulbImage = document.getElementById("bulb");
+    const catImage = document.getElementById("cat");
+
+    const paragraph = document.getElementById("paragraph");
+    const buttonOnElement = document.getElementById("On");
+    const buttonOffElement = document.getElementById("Off");
+
+    buttonOffElement.addEventListener("click",()=>{
+      bulbImage.src = "https://ik.imagekit.io/4z8covdo9/Full%20stack/bulb-go-off-img.png?updatedAt=1702818065200";
+      catImage.src = "https://ik.imagekit.io/4z8covdo9/Full%20stack/cat-eyes-img.png?updatedAt=1702818102345";
+      paragraph.textContent = "Switched Off" ;
+    });
+
+    buttonOnElement.addEventListener("click",()=>{
+      bulbImage.src = "https://ik.imagekit.io/4z8covdo9/Full%20stack/bulb-go-on-img.png";
+      catImage.src = "https://ik.imagekit.io/4z8covdo9/Full%20stack/cat-img.png";
+      paragraph.textContent = "Switched on" ;
+    });
+  </script>
+
+</body>
+</html>

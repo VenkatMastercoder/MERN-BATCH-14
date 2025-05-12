@@ -1,0 +1,30 @@
+.para-1 {
+  color: #27224b;
+  background-color: aqua;
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIOsQgOKrn_Qf4OMVjI0dU75e_hZlgEiUnKg&s");
+  background-size: contain;
+  height: 100px;
+  background-repeat: no-repeat;
+  margin: 50px;
+}
+
+.para-2 {
+  color: red;
+  background-color: aqua;
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIOsQgOKrn_Qf4OMVjI0dU75e_hZlgEiUnKg&s");
+  background-size: cover;
+  height: 100px;
+  opacity: 1;
+}
+
+.box-model {
+  color: red;
+  background-color: green;
+  height: 50px;
+  width: 50px;
+  padding: 5px;
+  border: 1px;
+  border-style: solid;
+  border-color: red;
+  border-radius: 15px;
+}

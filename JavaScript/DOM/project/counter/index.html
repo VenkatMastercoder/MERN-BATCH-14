@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Counter</title>
+</head>
+
+<body>
+  <p>Counter</p>
+
+  <p id="value">0</p>
+
+  <button id="minus">-</button>
+  <button id="reset">Reset</button>
+  <button id="plus">+</button>
+
+
+  <script>
+    const counterValue = document.getElementById("value"); //  <p id="value">0</p>
+
+    const counterPlus = document.getElementById("plus"); //  <button id="plus">+</button>
+    const counterMinus = document.getElementById("minus"); //<button id="plus">-</button>
+    const counterReset = document.getElementById("reset"); //<button id="plus">0</button>
+
+    counterPlus.addEventListener("click", () => {
+      console.log("counterPlus Btn", counterValue)
+      counterValue.textContent = parseInt(counterValue.textContent) + 1
+    // <p id="value">0</p> = "0" ==> 0 + 1
+    });
+
+    counterMinus.addEventListener("click", () => {
+      console.log("counterPlus Btn")
+      counterValue.textContent = parseInt(counterValue.textContent) - 1
+
+    });
+
+    counterReset.addEventListener("click", () => {
+      console.log("counterPlus Btn")
+      counterValue.textContent = 0
+    });
+
+
+
+  </script>
+
+</body>
+
+</html>
