@@ -4,6 +4,10 @@ const app = express();
 
 const prisma = new PrismaClient();
 
+app.get("/",(req,res)=>{
+  res.send("Working")
+})
+
 // API : GET - localhost:3000/products
 app.get("/products", async (req, res) => {
   try {
